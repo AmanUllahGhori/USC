@@ -11,6 +11,7 @@ import java.util.Scanner;
 public class UniversitySportCenter {
  public  Scanner input = new Scanner(System.in);
  MyExercises myExercises=new MyExercises();
+ MyExercises[] myexercises = new MyExercises[20];
     /**
      * @param args the command line arguments
      */
@@ -22,7 +23,34 @@ public class UniversitySportCenter {
                            Welcome Back to CUI Exercise Center 
                               ----------------------------""");
         UniversitySportCenter universitySportCenter=new UniversitySportCenter();
+        universitySportCenter.InsertData();
         universitySportCenter.DashBoardData();
+    }
+    
+    public void InsertData()
+    {
+         MyExercises yoga = new MyExercises("Yoga",1,300,5,"Sunday","Morning");
+         MyExercises Sweat = new MyExercises("Sweat",2,300,6,"Sunday","AfterNoon");
+         MyExercises PowerHour = new MyExercises("Power Hour",3,300,5,"Sunday","Evening");
+         MyExercises CurlsCrunches = new MyExercises("Curls n’ Crunches",4,300,7,"Sunday","Morning");
+         MyExercises FabFitFun = new MyExercises("Fab & Fit & Fun",5,300,3,"Saturday","AfterNoon");
+         MyExercises AbsFab = new MyExercises("Abs Fab / Fab Abs",6,300,2,"Saturday","Evening");
+         MyExercises WalkthisWeigh = new MyExercises("Walk this Weigh",7,300,4,"Saturday","Morning");
+         MyExercises WishfulShrinking = new MyExercises("Wishful Shrinking",8,300,0,"Saturday","AfterNoon");
+         MyExercises Transform = new MyExercises("Transform",9,300,3,"Saturday","Evening");
+         MyExercises SweatFest = new MyExercises("Sweat Fest",10,300,1,"Sunday","Morning");
+
+         myexercises[0]= yoga;
+         myexercises[1]= Sweat;
+         myexercises[2]= PowerHour;
+         myexercises[3]= CurlsCrunches;
+         myexercises[4]= FabFitFun;
+         myexercises[5]= AbsFab;
+         myexercises[6]= WalkthisWeigh;
+         myexercises[7]= WishfulShrinking;
+         myexercises[8]= Transform;
+         myexercises[9]= SweatFest;
+
     }
     
     public void DashBoardData() {
@@ -66,10 +94,42 @@ public class UniversitySportCenter {
     };
     public void CurrentAvailableExercises()
     {
-        MyExercises[] myexercises = new MyExercises[6];
-        MyExercises yoga = new MyExercises("Yoga",1,300,5,"Sunday","8:00 AM","1:00 PM","8:00 PM");
-        myexercises[0]= yoga;
-        System.out.println("id:"+yoga.getId()+"\nName:"+yoga.getName());
+        for(int i=0;i<10;i++)
+        {
+          System.out.println("id:"+myexercises[i].getId()+"\nName:"+myexercises[i].getName()+"\nTime:"+myexercises[i].getDay()+" "+myexercises[i].getTime()+"\nPrice:"+myexercises[i].getPrice()+"\nTotal Members:"+myexercises[i].getMembers()+"\n\n");
+        }
+        
+          var selection ='A';
+          //Ensures a Name is entered.
+//		do{
+//                         System.out.println("Please Enter ( y ) to go back Thanks!");
+//                         selection = input.toString();
+//		}
+//		while("y".equals(selection) );
+//Checks if customer is a student
+		do{
+                        System.out.println("Please Enter ( y ) to go back Thanks!");
+			selection = input.next().charAt(0);
+			selection = Character.toLowerCase(selection);
+		}
+		while (selection != 'y');
+                this.DashBoardData();
+                
+//         for(int i=0;i<1;i++)
+//         {
+//             if("y".equals(selection))
+//             {
+//                 i=2;
+//             }
+//             else
+//             {
+//                 System.out.println("Please Enter ( y ) to go back Thanks!");
+//                 selection = input.toString();
+//                 i=0;
+//             }
+//             
+//         }
+       
     };
     public void GiveRating()
     {

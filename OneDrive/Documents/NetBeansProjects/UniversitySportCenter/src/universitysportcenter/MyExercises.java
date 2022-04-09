@@ -12,22 +12,20 @@ public class MyExercises {
     
 	private String name;
         private int id;
-        private double price;
+        private int price;
         private int members;
         private String day;
-        private String morningTime;
-        private String AfternoonTime;
-        private String EveningTime;
+        private String time;
+       
         
-        public MyExercises(String name,int id,double price,int members,String day,String morningTime,String AfternoonTime,String EveningTime) {
+        public MyExercises(String name,int id,int price,int members,String day,String Time) {
 		this.name=name;
                 this.id=id;
                 this.price=price;
                 this.members=members;
                 this.day=day;
-                this.morningTime=morningTime;
-                this.AfternoonTime=AfternoonTime;
-                this.EveningTime=EveningTime;
+                this.time=Time;
+                
 	}
          public MyExercises() {
 		
@@ -53,12 +51,12 @@ public class MyExercises {
 		this.id = id;
 	}
         
-        public double getPrice()
+        public int getPrice()
 	{
 		return this.price;
 	}
 	
-	public void setPrice(double price)
+	public void setPrice(int price)
 	{
 		this.price = price;
 	}
@@ -83,39 +81,17 @@ public class MyExercises {
 		this.day = day;
 	}
         
-        public String getMoringTime()
+        public String getTime()
 	{
-		return this.morningTime;
+		return this.time;
 	}
 	
-	public void setMoringTime(String morningTime)
+	public void setTime(String Time)
 	{
-		this.morningTime = morningTime;
+		this.time = Time;
 	}
         
-        public String getAfternoonTime()
-	{
-		return this.AfternoonTime;
-	}
-	
-	public void setAfternoonTime(String AfternoonTime)
-	{
-		this.AfternoonTime = AfternoonTime;
-	}
-        
-        public String getEveningTime()
-	{
-		return this.EveningTime;
-	}
-	
-	public void setEveningTime(String EveningTime)
-	{
-		this.EveningTime = EveningTime;
-	}
-        
-
-
-        
+       
 
 
 
