@@ -28,7 +28,12 @@ public class MyExercises {
                 
 	}
          public MyExercises() {
-		
+		this.name="anyOne";
+                this.id=1;
+                this.price=200;
+                this.members=2;
+                this.day="sunday";
+                this.time="Morning";
 	 }
         
         public String getName()

@@ -9,11 +9,15 @@ import java.util.Scanner;
  * @author shahr
  */
 public class UniversitySportCenter {
+    public void UniversitySportCenter()
+    {
+        
+    }
  public  Scanner input = new Scanner(System.in);
  MyExercises myExercises=new MyExercises();
  MyExercises[] myexercises = new MyExercises[10];
  int purchaseArraySize=2;
- PurchaseExercises[] purchaseExercises=new PurchaseExercises[purchaseArraySize];
+ PurchaseExercises[] purchaseExercises=new PurchaseExercises[10];
     /**
      * @param args the command line arguments
      */
@@ -55,8 +59,15 @@ public class UniversitySportCenter {
          
         PurchaseExercises yogaPurchase = new PurchaseExercises("Yoga",1,300,5,"Sunday","Morning");
         PurchaseExercises WalkthisWeighPurchase = new PurchaseExercises("Walk this Weigh",7,300,4,"Saturday","Morning");
+        PurchaseExercises SweatPurchase = new PurchaseExercises("Sweat",2,300,6,"Sunday","AfterNoon");
+        PurchaseExercises PowerHourPurchase = new PurchaseExercises("Power Hour",3,300,5,"Sunday","Evening");
+        PurchaseExercises CurlsnCrunchesPurchase = new PurchaseExercises("Curls n’ Crunches",4,300,7,"Sunday","Morning");
+
         purchaseExercises[0]= yogaPurchase;
         purchaseExercises[1]= WalkthisWeighPurchase;
+        purchaseExercises[2]= SweatPurchase;
+        purchaseExercises[3]= PowerHourPurchase;
+        purchaseExercises[4]= CurlsnCrunchesPurchase;
 
 
     }
@@ -65,7 +76,7 @@ public class UniversitySportCenter {
                 int selection=0;
 		System.out.println(" 1 : Current Available Exercises");
                 System.out.println(" 2 : Current Purchase Exercises");
-                System.out.println(" 3 : Purchase Exercises");
+                System.out.println(" 3 : Purchase Exercise");
 		System.out.println(" 4 : Give Rating");
 		System.out.println(" 5 : Display Maximum Earning Exersise");
                 System.out.println(" 6 : Display Exersises Report");
@@ -80,9 +91,9 @@ public class UniversitySportCenter {
             switch (selection) {
                 case 1 -> this.CurrentAvailableExercises();
                 case 2 -> this.CurrentPurchaseExercises();
-                case 3 -> System.out.println("3 Current Purchase Exercises");
+                case 3 -> this.PurchaseExercise();
                 case 4 -> System.out.println("4 Current Purchase Exercises");
-                case 5 -> System.out.println("5 Current Purchase Exercises");
+                case 5 -> this.MaxEarning();
                 case 6 -> System.out.println("6 Current Purchase Exercises");
                 default -> System.out.println("else Current Purchase Exercises");
             }
@@ -159,15 +170,11 @@ public class UniversitySportCenter {
                     do{
                         System.out.println("Please enter exercise id number to update Thanks!");
 			NewId = input.nextInt();
-                         for(int i=0;i<myexercises.length;i++)
-                        {
-                            if(myexercises[i].getId()==NewId)
-                            {
-                                isExisit=true;
-                            }
-                           
-                            
-                        }   
+                        for (MyExercises myexercise : myexercises) {
+                if (myexercise.getId() == NewId) {
+                    isExisit=true;
+                }
+            }   
                          if(isExisit==true)
                          {
                            System.out.println("validate Exercise id succesfully!");
@@ -253,18 +260,178 @@ public class UniversitySportCenter {
     
        
     };
-    public void GiveRating()
+    
+    public void PurchaseExercise()
     {
-        
-    };
+        System.out.println("Register your self into Exercise group by two ways \n\nSelect the way \n1:By day(Saturday or Sunday)\n2:By Exercise name \nKindly enter option number");
+        int selection ;
+		do{
+                        System.out.println("Kindly enter right option");
+			selection = input.nextInt();
+		}
+		while (selection >3 && selection !=0);
+                if(selection==1)
+                {
+                    this.PurchaseExerciseByDay();
+                }
+                else
+                {
+                    this.PurchaseExerciseByName();
+                }
+    }
+    
+    public void PurchaseExerciseByDay()
+    {
+        System.out.println("Kindly enter day name(Enter Saturday or Sunday)");
+        String selection ;
+		do{
+                        System.out.println("Kindly enter right Day");
+			selection = input.nextLine();
+			selection = selection.toLowerCase();
+		}
+		while (!"sunday".equals(selection) && !"saturday".equals(selection));
+        for (MyExercises myexercise : myexercises) {
+            if (myexercise.getDay().toLowerCase().equals(selection)) {
+                System.out.println("id:" + myexercise.getId() + "\nName:" + myexercise.getName() + "\nTime:" + myexercise.getDay() + " " + myexercise.getTime() + "\nPrice:" + myexercise.getPrice() + "\nTotal Members:" + myexercise.getMembers() + "\n\n");
+            }
+        }
+                System.out.println("Kindly enter id number Thanks!");
+                int id ;
+                boolean isExist=false;
+		do{
+                        System.out.println("Kindly enter right Day");
+			id = input.nextInt();
+                        if(id<11 && myexercises[id-1].getDay().toLowerCase().equals(selection))
+                        {
+                            isExist=true;
+                        }
+			
+		}
+		while (id>10 && isExist!=true);
+                
+                if( myexercises[id-1].getMembers()<5)
+                {
+                    System.out.println("Minimum 4 members required Sorry you not able to register into this exercise Group");
+                    this.DashBoardData();
+                }
+                for(int i=0;i<purchaseArraySize;i++)
+                {
+                    if(purchaseExercises[i].getId()==id)
+                    {
+                        System.out.println("You already Register. Sorry you not able to register into this exercise Group");
+                        this.DashBoardData();
+                    }
+                    else if(purchaseExercises[i].getTime().equals(myexercises[id-1].getTime()) && purchaseExercises[i].getDay().equals(myexercises[id-1].getDay()))
+                    {
+                        System.out.println("You have some time conflicts . Sorry you not able to register into this exercise Group");
+                        this.DashBoardData();
+                    }
+                }
+                               
+ 
+                purchaseExercises[purchaseArraySize].setName(myexercises[id-1].getName());
+                purchaseExercises[purchaseArraySize].setId(myexercises[id-1].getId());
+                purchaseExercises[purchaseArraySize].setMembers(myexercises[id-1].getMembers());
+                purchaseExercises[purchaseArraySize].setPrice(myexercises[id-1].getPrice());
+                purchaseExercises[purchaseArraySize].setDay(myexercises[id-1].getDay());
+                purchaseExercises[purchaseArraySize].setTime(myexercises[id-1].getTime());
+//                  PurchaseExercises newObject=new PurchaseExercises(myexercises[id-1].getName(),myexercises[id-1].getId(),myexercises[id-1].getMembers(),myexercises[id-1].getPrice(),myexercises[id-1].getDay(),myexercises[id-1].getTime());
+//                  purchaseExercises[purchaseArraySize]=newObject;
+                  purchaseArraySize=purchaseArraySize+1;
+                  System.out.println("Congratulations! you have registered ");
+                  myexercises[id-1].setMembers(myexercises[id-1].getMembers()+1);
+                  this.DashBoardData();
+
+                
+
+                
+    }
+    
+    public void PurchaseExerciseByName()
+    {
+        System.out.println("Kindly enter valid Exercise name");
+        String selection ;
+        boolean isExist = false; 
+        int selectedId=0;
+		do{
+			selection = input.nextLine();
+			selection = selection.toLowerCase();
+                        for(int i=0;i<myexercises.length;i++)
+                        {
+
+                            if(myexercises[i].getName().toLowerCase().equals(selection))
+                            {
+                                isExist=true;
+                                selectedId=i+1;
+                            }
+                        }
+                       
+                        
+                        
+		}
+		while (isExist!=true);
+                
+                
+                if( myexercises[selectedId-1].getMembers()<5)
+                {
+                    System.out.println("Minimum 4 members required Sorry you not able to register into this exercise Group");
+                    this.DashBoardData();
+                }
+                for(int i=0;i<purchaseArraySize;i++)
+                {
+                    if(purchaseExercises[i].getId()==selectedId)
+                    {
+                        System.out.println("You already Register. Sorry you not able to register into this exercise Group");
+                        this.DashBoardData();
+                    }
+                    else if(purchaseExercises[i].getTime().equals(myexercises[selectedId-1].getTime()) && purchaseExercises[i].getDay().equals(myexercises[selectedId-1].getDay()))
+                    {
+                        System.out.println("You have some time conflicts . Sorry you not able to register into this exercise Group");
+                        this.DashBoardData();
+                    }
+                }
+                               
+ 
+                purchaseExercises[purchaseArraySize].setName(myexercises[selectedId-1].getName());
+                purchaseExercises[purchaseArraySize].setId(myexercises[selectedId-1].getId());
+                purchaseExercises[purchaseArraySize].setMembers(myexercises[selectedId-1].getMembers());
+                purchaseExercises[purchaseArraySize].setPrice(myexercises[selectedId-1].getPrice());
+                purchaseExercises[purchaseArraySize].setDay(myexercises[selectedId-1].getDay());
+                purchaseExercises[purchaseArraySize].setTime(myexercises[selectedId-1].getTime());
+//                  PurchaseExercises newObject=new PurchaseExercises(myexercises[id-1].getName(),myexercises[id-1].getId(),myexercises[id-1].getMembers(),myexercises[id-1].getPrice(),myexercises[id-1].getDay(),myexercises[id-1].getTime());
+//                  purchaseExercises[purchaseArraySize]=newObject;
+                  purchaseArraySize=purchaseArraySize+1;
+                  System.out.println("Congratulations! you have registered ");
+                  myexercises[selectedId-1].setMembers(myexercises[selectedId-1].getMembers()+1);
+                  this.DashBoardData();
+                
+                
+    }
+    
+//    public void GiveRating()
+//    {
+//        
+//    };
     public void MaxEarning()
     {
+        int maxEarning=0;
+        int index=0;
+        for(int i=0;i<10;i++)
+        {
+            if(maxEarning<myexercises[i].getMembers()*myexercises[i].getPrice())
+            {
+                maxEarning=myexercises[i].getMembers()*myexercises[i].getPrice();
+                index=i;
+            }
+        }
+        
+        System.out.println("id:"+myexercises[index].getId()+"\nName:"+myexercises[index].getName()+"\nTime:"+myexercises[index].getDay()+" "+myexercises[index].getTime()+"\nPrice:"+myexercises[index].getPrice()+"\nTotal Earning:"+myexercises[index].getPrice()*myexercises[index].getMembers()+"\nTotal Members:"+myexercises[index].getMembers()+"\n\n");
         
     };
-    public void DisplayReport()
-    {
-        
-    };
+//    public void DisplayReport()
+//    {
+//        
+//    };
     
 }
 
