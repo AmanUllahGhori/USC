@@ -18,6 +18,8 @@ public class UniversitySportCenter {
  MyExercises[] myexercises = new MyExercises[10];
  int purchaseArraySize=2;
  PurchaseExercises[] purchaseExercises=new PurchaseExercises[10];
+ Report[] report =new Report[50]; 
+ int reportArraySize=43;
     /**
      * @param args the command line arguments
      */
@@ -69,6 +71,63 @@ public class UniversitySportCenter {
         purchaseExercises[3]= PowerHourPurchase;
         purchaseExercises[4]= CurlsnCrunchesPurchase;
 
+        
+        
+        report[0]=new Report("AmanUllah",1,"Yoga",3,"It,s helping for me",1);
+        report[1]=new Report("Merieam",1,"Yoga",4,"It,s helping for me",1);
+        report[2]=new Report("Zaka",1,"Yoga",5,"It,s helping for me",1);
+        report[3]=new Report("Joi",1,"Yoga",1,"Totally disappointing",1);
+        report[4]=new Report("Muneeb",1,"Yoga",1,"Disappointing",1);
+        
+        report[5]=new Report("Zu Hang",2,"Sweat",4,"It,s helping for me",1);
+        report[6]=new Report("Kiran",2,"Sweat",3,"It,s helping for me",1);
+        report[7]=new Report("Kumar",2,"Sweat",3,"It,s helping for me",1);
+        report[8]=new Report("Zain",2,"Sweat",2,"It,s helping for me but service not good",1);
+        report[9]=new Report("Jhone",2,"Sweat",1,"Totally disappointing",1);
+        report[10]=new Report("Aimey",2,"Sweat",1,"Disappointing",1);
+        
+        report[11]=new Report("AmanUllah",1,"Yoga",3,"It,s helping for me",2);
+        report[12]=new Report("Merieam",1,"Yoga",4,"It,s helping for me",2);
+        report[13]=new Report("Zaka",1,"Yoga",5,"It,s helping for me",2);
+        report[14]=new Report("Joi",1,"Yoga",1,"Totally disappointing",2);
+        report[15]=new Report("Muneeb",1,"Yoga",1,"Disappointing",2);
+
+        
+        report[16]=new Report("Zu Hang",2,"Sweat",4,"It,s helping for me",2);
+        report[17]=new Report("Kiran",2,"Sweat",3,"It,s helping for me",2);
+        report[18]=new Report("Kumar",2,"Sweat",3,"It,s helping for me",2);
+        report[19]=new Report("Zain",2,"Sweat",2,"It,s helping for me but service not good",2);
+        report[20]=new Report("Jhone",2,"Sweat",1,"Totally disappointing",2);
+        report[21]=new Report("Aimey",2,"Sweat",1,"Disappointing",2);
+        
+        report[22]=new Report("AmanUllah",1,"Yoga",3,"It,s helping for me",3);
+        report[23]=new Report("Merieam",1,"Yoga",4,"It,s helping for me",3);
+        report[24]=new Report("Zaka",1,"Yoga",5,"It,s helping for me",3);
+        report[25]=new Report("Joi",1,"Yoga",1,"Totally disappointing",3);
+        report[26]=new Report("Muneeb",1,"Yoga",1,"Disappointing",3);
+        
+        report[27]=new Report("Zu Hang",2,"Sweat",4,"It,s helping for me",3);
+        report[28]=new Report("Kiran",2,"Sweat",3,"It,s helping for me",3);
+        report[29]=new Report("Kumar",2,"Sweat",3,"It,s helping for me",3);
+        report[30]=new Report("Zain",2,"Sweat",2,"It,s helping for me but service not good",3);
+        report[31]=new Report("Jhone",2,"Sweat",1,"Totally disappointing",3);
+        report[32]=new Report("Aimey",2,"Sweat",1,"Disappointing",3);
+        
+        report[33]=new Report("AmanUllah",1,"Yoga",3,"It,s helping for me",4);
+        report[34]=new Report("Merieam",1,"Yoga",4,"It,s helping for me",4);
+        report[35]=new Report("Zaka",1,"Yoga",5,"It,s helping for me",4);
+        report[36]=new Report("Joi",1,"Yoga",1,"Totally disappointing",4);
+        report[37]=new Report("Muneeb",1,"Yoga",1,"Disappointing",4);
+
+        
+        report[38]=new Report("Zu Hang",2,"Sweat",4,"It,s helping for me",4);
+        report[39]=new Report("Kiran",2,"Sweat",3,"It,s helping for me",4);
+        report[40]=new Report("Kumar",2,"Sweat",3,"It,s helping for me",4);
+        report[41]=new Report("Zain",2,"Sweat",2,"It,s helping for me but service not good",4);
+        report[42]=new Report("Jhone",2,"Sweat",1,"Totally disappointing",4);
+        report[43]=new Report("Aimey",2,"Sweat",1,"Disappointing",4);
+
+
 
     }
     
@@ -92,9 +151,9 @@ public class UniversitySportCenter {
                 case 1 -> this.CurrentAvailableExercises();
                 case 2 -> this.CurrentPurchaseExercises();
                 case 3 -> this.PurchaseExercise();
-                case 4 -> System.out.println("4 Current Purchase Exercises");
+                case 4 -> this.GiveRating();
                 case 5 -> this.MaxEarning();
-                case 6 -> System.out.println("6 Current Purchase Exercises");
+                case 6 -> this.DisplayReport();
                 default -> System.out.println("else Current Purchase Exercises");
             }
                 
@@ -408,10 +467,56 @@ public class UniversitySportCenter {
                 
     }
     
-//    public void GiveRating()
-//    {
-//        
-//    };
+    public void GiveRating()
+    {
+        int rating;
+        String coment="";
+        int inputId;
+        int weekNumber;
+        
+           for(int i=0;i<purchaseArraySize;i++)
+        {
+          System.out.println("id:"+purchaseExercises[i].getId()+"\nName:"+purchaseExercises[i].getName()+"\nTime:"+purchaseExercises[i].getDay()+" "+purchaseExercises[i].getTime()+"\nPrice:"+purchaseExercises[i].getPrice()+"\nTotal Members:"+purchaseExercises[i].getMembers()+"\n\n");
+        } 
+           
+        System.out.println("Please enter exercise id for feedback report");
+
+        boolean isExist = false; 
+		do{
+			inputId = input.nextInt();
+             for (int i=0;i<purchaseArraySize;i++) {
+                if (purchaseExercises[i].getId() == inputId) {
+                    isExist=true;
+                }
+             }     
+		}
+		while (isExist!=true);
+                
+            System.out.println("1:Very dissatisfied \n2:Dissatisfied \n3:Ok \n4:Satisfied \n5:Very satisfied \nPlease select feedback reply");
+               do{
+			rating = input.nextInt();
+		}
+		while (rating>5 && rating==0);
+                
+            System.out.println("Write down a short report thanks");
+               do{
+			coment = input.nextLine();
+		}
+		while (coment.isEmpty());
+            System.out.println("Enter week number please(1 to 8)");
+               do{
+			weekNumber = input.nextInt();
+		}
+		while (weekNumber>8 && weekNumber<1 );
+               
+               report[reportArraySize]=new Report("AmanUllah",inputId,myexercises[inputId-1].getName(),rating,coment,weekNumber);
+               System.out.println("Report added successfully!");
+               reportArraySize=reportArraySize+1;
+               this.DashBoardData();
+
+           
+           
+    };
     public void MaxEarning()
     {
         int maxEarning=0;
@@ -428,10 +533,59 @@ public class UniversitySportCenter {
         System.out.println("id:"+myexercises[index].getId()+"\nName:"+myexercises[index].getName()+"\nTime:"+myexercises[index].getDay()+" "+myexercises[index].getTime()+"\nPrice:"+myexercises[index].getPrice()+"\nTotal Earning:"+myexercises[index].getPrice()*myexercises[index].getMembers()+"\nTotal Members:"+myexercises[index].getMembers()+"\n\n");
         
     };
-//    public void DisplayReport()
-//    {
-//        
-//    };
+    public void DisplayReport()
+    {
+        for (int i=1;i<9;i++)
+        {
+            for(int k=0;k<myexercises.length;k++)
+            {
+                int id=0;
+                int count=0;
+                int totalPoints=0;
+                int averageRatting;
+                
+                for(int m=0;m<reportArraySize;m++)
+                {
+                    if(myexercises[k].getId()==report[m].getExerciseId()&&report[m].getWeekNumber()==i)
+                    {
+                        id=myexercises[k].getId();
+                        count=count+1;
+                        totalPoints=totalPoints+report[m].getReportId();
+                    }
+                }
+                
+                if(id!=0)
+                {
+                averageRatting=totalPoints/count;
+                System.out.println("Day:"+i+"\nName:"+myexercises[k].getName()+"\nTotal Members:"+myexercises[k].getMembers());
+                if(averageRatting==1)
+                {
+                    System.out.println("Average Rating: Very dissatisfied \n\n");
+                }
+                
+                if(averageRatting==2)
+                {
+                    System.out.println("Average Rating: Dissatisfied \n\n");
+                }
+                if(averageRatting==3)
+                {
+                    System.out.println("Average Rating: Ok \n\n");
+                }
+                if(averageRatting==4)
+                {
+                    System.out.println("Average Rating: Satisfied \n\n");
+                }
+                if(averageRatting==5)
+                {
+                    System.out.println("Average Rating: Very satisfied \n\n");
+                }
+                
+                }
+                
+            }
+        }
+        this.DashBoardData();
+    };
     
 }
 
